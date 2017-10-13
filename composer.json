@@ -1,0 +1,29 @@
+{
+    "name": "ignislabs/hotjot",
+    "description": "Framework-agnostic JSON Web Token authentication library",
+    "type": "library",
+    "require": {
+        "lcobucci/jwt": "^3.2",
+        "nesbot/carbon": "^1.22"
+    },
+    "require-dev": {
+        "phpspec/phpspec": "^4.0"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Luciano Longo",
+            "email": "luciano.longo@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "IgnisLabs\\HotJot\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "spec\\IgnisLabs\\HotJot\\": "spec/"
+        }
+    }
+}

@@ -1,0 +1,5 @@
+suites:
+  hotjot:
+    namespace: IgnisLabs\HotJot
+    psr4_prefix: IgnisLabs\HotJot
+formatter.name: pretty

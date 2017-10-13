@@ -1,0 +1,55 @@
+<?php
+
+namespace IgnisLabs\HotJot\Contracts\Token;
+
+interface Token {
+
+    /**
+     * @return int|string
+     */
+    public function id();
+
+    /**
+     * @return int|string
+     */
+    public function subject();
+
+    /**
+     * @return string
+     */
+    public function issuedBy() : string;
+
+    /**
+     * @return string
+     */
+    public function audience() : string;
+
+    /**
+     * @return \DateTimeInterface
+     */
+    public function issuedAt() : \DateTimeInterface;
+
+    /**
+     * @return \DateTimeInterface
+     */
+    public function expiresAt() : \DateTimeInterface;
+
+    /**
+     * Get claim value
+     * @param $name
+     * @return mixed
+     */
+    public function getClaim($name);
+
+    /**
+     * Get all claims
+     * @return array
+     */
+    public function getClaims() : array;
+
+    /**
+     * Convert to string
+     * @return string
+     */
+    public function __toString();
+}

@@ -6,7 +6,7 @@ use Carbon\Carbon;
 use IgnisLabs\HotJot\Contracts\Blacklist;
 use IgnisLabs\HotJot\Contracts\RequestParser;
 use IgnisLabs\HotJot\Contracts\Token\Factory;
-use IgnisLabs\HotJot\Contracts\Token\Validator;
+use IgnisLabs\HotJot\Validator;
 use IgnisLabs\HotJot\Exceptions\TokenCannotBeRefreshedException;
 use IgnisLabs\HotJot\Manager;
 use IgnisLabs\HotJot\Token;
@@ -68,5 +68,11 @@ class ManagerSpec extends ObjectBehavior
     {
         $blacklist->add($token)->shouldBeCalled();
         $this->blacklist($token);
+    }
+
+    function it_should_validate_token(Validator $validator, Token $token)
+    {
+        $validator->validate($token)->shouldBeCalled();
+        $this->validate($token);
     }
 }

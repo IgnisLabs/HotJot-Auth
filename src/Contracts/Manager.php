@@ -44,7 +44,7 @@ interface Manager {
     /**
      * Validate token claims
      * @param Token $token
-     * @param array ...$excludeClaims
+     * @param array ...$excludeValidators
      */
-    public function validate(Token $token, ...$excludeClaims);
+    public function validate(Token $token, ...$excludeValidators);
 }

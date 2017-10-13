@@ -8,7 +8,6 @@ use IgnisLabs\HotJot\Contracts\Blacklist;
 use IgnisLabs\HotJot\Contracts\Manager as ManagerContract;
 use IgnisLabs\HotJot\Contracts\Token\Factory;
 use IgnisLabs\HotJot\Contracts\Token\Token;
-use IgnisLabs\HotJot\Contracts\Token\Validator;
 use IgnisLabs\HotJot\Exceptions\TokenCannotBeRefreshedException;
 
 class Manager implements ManagerContract {
@@ -29,9 +28,9 @@ class Manager implements ManagerContract {
     private $blacklist;
 
     /**
-     * @var Validator[]
+     * @var Validator
      */
-    private $validators;
+    private $validator;
 
     /**
      * @var int
@@ -40,18 +39,18 @@ class Manager implements ManagerContract {
 
     /**
      * Manager constructor.
-     * @param Factory       $factory
-     * @param RequestParser $parser
-     * @param Blacklist     $blacklist
-     * @param int           $ttr        Time to Refresh in days
-     * @param Validator[]   ...$validators
+     * @param Factory               $factory
+     * @param RequestParser         $parser
+     * @param Blacklist             $blacklist
+     * @param int                   $ttr Time to Refresh in days
+     * @param Validator $validator
      */
-    public function __construct(Factory $factory, RequestParser $parser, Blacklist $blacklist, $ttr = 15, Validator ...$validators) {
+    public function __construct(Factory $factory, RequestParser $parser, Blacklist $blacklist, $ttr = 15, Validator $validator) {
         $this->factory = $factory;
         $this->parser = $parser;
         $this->blacklist = $blacklist;
         $this->ttr = $ttr;
-        $this->validators = $validators;
+        $this->validator = $validator;
     }
 
     /**
@@ -108,10 +107,9 @@ class Manager implements ManagerContract {
     /**
      * Validate token claims
      * @param Token $token
-     * @param array $excludeClaims
+     * @param array $excludeValidators Exclude validators by class name
      */
-    public function validate(Token $token, ...$excludeClaims) {
-        // TODO: Implement validate() method.
-        // Loop through claims and get corresponding validators
+    public function validate(Token $token, ...$excludeValidators) {
+        $this->validator->validate($token, ...$excludeValidators);
     }
 }

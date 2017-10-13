@@ -81,6 +81,23 @@ class Token implements TokenContract {
     }
 
     /**
+     * Get header value
+     * @param $name
+     * @return mixed
+     */
+    public function getHeader($name) {
+        return $this->token->getHeader($name);
+    }
+
+    /**
+     * Get all headers
+     * @return array
+     */
+    public function getHeaders() : array {
+        return $this->token->getHeaders();
+    }
+
+    /**
      * Convert to string
      * @return string
      */

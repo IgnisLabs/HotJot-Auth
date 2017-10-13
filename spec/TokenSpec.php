@@ -73,4 +73,16 @@ class TokenSpec extends ObjectBehavior
         $token->getClaims()->willReturn(['foo' => 'bar', 'baz' => 'qux']);
         $this->getClaims()->shouldBe(['foo' => 'bar', 'baz' => 'qux']);
     }
+
+    function it_should_get_any_header_as_it_is(LcobucciToken $token)
+    {
+        $token->getHeader('foo')->willReturn('bar');
+        $this->getHeader('foo')->shouldBe('bar');
+    }
+
+    function it_should_get_all_headers(LcobucciToken $token)
+    {
+        $token->getHeaders()->willReturn(['foo' => 'bar', 'baz' => 'qux']);
+        $this->getHeaders()->shouldBe(['foo' => 'bar', 'baz' => 'qux']);
+    }
 }

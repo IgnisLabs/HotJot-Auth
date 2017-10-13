@@ -48,6 +48,19 @@ interface Token {
     public function getClaims() : array;
 
     /**
+     * Get header value
+     * @param $name
+     * @return mixed
+     */
+    public function getHeader($name);
+
+    /**
+     * Get all headers
+     * @return array
+     */
+    public function getHeaders() : array;
+
+    /**
      * Convert to string
      * @return string
      */

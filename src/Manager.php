@@ -39,18 +39,18 @@ class Manager implements ManagerContract {
 
     /**
      * Manager constructor.
-     * @param Factory               $factory
-     * @param RequestParser         $parser
-     * @param Blacklist             $blacklist
-     * @param int                   $ttr Time to Refresh in days
-     * @param Validator $validator
+     * @param Factory       $factory
+     * @param RequestParser $parser
+     * @param Blacklist     $blacklist
+     * @param Validator     $validator
+     * @param int           $ttr
      */
-    public function __construct(Factory $factory, RequestParser $parser, Blacklist $blacklist, $ttr = 15, Validator $validator) {
+    public function __construct(Factory $factory, RequestParser $parser, Blacklist $blacklist, Validator $validator, $ttr = 15) {
         $this->factory = $factory;
         $this->parser = $parser;
         $this->blacklist = $blacklist;
-        $this->ttr = $ttr;
         $this->validator = $validator;
+        $this->ttr = $ttr;
     }
 
     /**

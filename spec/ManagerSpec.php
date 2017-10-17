@@ -17,7 +17,7 @@ class ManagerSpec extends ObjectBehavior
 {
     function let(Factory $factory, RequestParser $parser, Blacklist $blacklist, Validator $validator)
     {
-        $this->beConstructedWith($factory, $parser, $blacklist, 15, $validator);
+        $this->beConstructedWith($factory, $parser, $blacklist, $validator);
     }
 
     function it_is_initializable()

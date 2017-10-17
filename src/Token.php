@@ -29,10 +29,14 @@ class Token implements TokenContract {
     }
 
     /**
-     * @return string|int
+     * @return int|string|null
      */
     public function subject() {
-        return $this->getClaim('sub');
+        try {
+            return $this->getClaim('sub');
+        } catch (\OutOfBoundsException $exception) {
+            return null;
+        }
     }
 
     /**
@@ -43,17 +47,36 @@ class Token implements TokenContract {
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function audience() : string {
-        return $this->getClaim('aud');
+    public function audience() : ?string {
+        try {
+            return $this->getClaim('aud');
+        } catch (\OutOfBoundsException $exception) {
+            return null;
+        }
     }
 
     /**
-     * @return \DateTimeInterface
+     * @return \DateTimeInterface|null
      */
-    public function issuedAt() : \DateTimeInterface {
-        return $this->getClaimAsDateTime('iat');
+    public function issuedAt() : ?\DateTimeInterface {
+        try {
+            return $this->getClaimAsDateTime('iat');
+        } catch (\OutOfBoundsException $exception) {
+            return null;
+        }
+    }
+
+    /**
+     * @return \DateTimeInterface|null
+     */
+    public function notBefore() : ?\DateTimeInterface {
+        try {
+            return $this->getClaimAsDateTime('nbf');
+        } catch (\OutOfBoundsException $exception) {
+            return null;
+        }
     }
 
     /**

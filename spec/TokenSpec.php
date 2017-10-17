@@ -53,6 +53,15 @@ class TokenSpec extends ObjectBehavior
         $issuedAt->timestamp->shouldBe($timestamp);
     }
 
+    function it_should_get_not_before_date(LcobucciToken $token)
+    {
+        $timestamp = Carbon::now()->timestamp;
+        $token->getClaim('nbf')->willReturn($timestamp);
+        $notBefore = $this->notBefore();
+        $notBefore->shouldBeAnInstanceOf(\DateTimeInterface::class);
+        $notBefore->timestamp->shouldBe($timestamp);
+    }
+
     function it_should_get_expires_at_date(LcobucciToken $token)
     {
         $timestamp = Carbon::now()->timestamp;

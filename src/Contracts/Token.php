@@ -10,7 +10,7 @@ interface Token {
     public function id();
 
     /**
-     * @return int|string
+     * @return int|string|null
      */
     public function subject();
 
@@ -20,14 +20,19 @@ interface Token {
     public function issuedBy() : string;
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function audience() : string;
+    public function audience() : ?string;
 
     /**
-     * @return \DateTimeInterface
+     * @return \DateTimeInterface|null
      */
-    public function issuedAt() : \DateTimeInterface;
+    public function issuedAt() : ?\DateTimeInterface;
+
+    /**
+     * @return \DateTimeInterface|null
+     */
+    public function notBefore() : ?\DateTimeInterface;
 
     /**
      * @return \DateTimeInterface

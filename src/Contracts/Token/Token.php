@@ -35,6 +35,12 @@ interface Token {
     public function expiresAt() : \DateTimeInterface;
 
     /**
+     * Get token signature
+     * @return null|string
+     */
+    public function signature() : ?string;
+
+    /**
      * Get claim value
      * @param $name
      * @return mixed

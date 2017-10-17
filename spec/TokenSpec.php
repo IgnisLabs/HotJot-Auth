@@ -62,6 +62,12 @@ class TokenSpec extends ObjectBehavior
         $expiresAt->timestamp->shouldBe($timestamp);
     }
 
+    function it_should_get_the_signature(LcobucciToken $token)
+    {
+        $token->__toString()->willReturn('foo.bar.baz');
+        $this->signature()->shouldBe('baz');
+    }
+
     function it_should_get_any_claim_as_it_is(LcobucciToken $token)
     {
         $token->getClaim('foo')->willReturn('bar');

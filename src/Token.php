@@ -64,6 +64,15 @@ class Token implements TokenContract {
     }
 
     /**
+     * Get token signature
+     * @return null|string
+     */
+    public function signature() : ?string {
+        $tokenParts = explode('.', $this->token->__toString());
+        return $tokenParts[2] ?? null;
+    }
+
+    /**
      * Get claim value
      * @param $name
      * @return mixed

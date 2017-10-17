@@ -21,11 +21,11 @@ class Validator {
     }
 
     /**
-     * @param TokenValidator $validator
+     * @param TokenValidator[] $validators
      * @return Validator
      */
-    public function addValidator(TokenValidator $validator) : Validator {
-        // @todo implement this method!
+    public function addValidators(TokenValidator ...$validators) : Validator {
+        return new static(...$this->validators, ...$validators);
     }
 
     /**
@@ -33,16 +33,21 @@ class Validator {
      * @return Validator
      */
     public function replaceValidators(TokenValidator ...$validators) : Validator {
-        // @todo implement this method!
+        return new static(...$validators);
     }
 
     /**
      * Validate token
-     * Validators should throw exceptions with descriptive message
+     * Validators should throw exceptions with descriptive messages
      * @param Token $token
      * @param array ...$excludeValidators
      */
     public function validate(Token $token, ...$excludeValidators) : void {
-        // @todo implement this method!
+        $validators = array_filter($this->validators, function(TokenValidator $validator) use ($excludeValidators) {
+            return !in_array(get_class($validator), $excludeValidators);
+        });
+        foreach ($validators as $validator) {
+            $validator->validate($token);
+        }
     }
 }

@@ -3,5 +3,10 @@
 namespace IgnisLabs\HotJot\Contracts\Token;
 
 interface Validator {
-    public function validate(Token $token);
+
+    /**
+     * Validate a token
+     * @param Token $token
+     */
+    public function validate(Token $token) : void;
 }

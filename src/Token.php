@@ -4,7 +4,7 @@ namespace IgnisLabs\HotJot;
 
 use Carbon\Carbon;
 use Lcobucci\JWT\Token as LcobucciToken;
-use IgnisLabs\HotJot\Contracts\Token\Token as TokenContract;
+use IgnisLabs\HotJot\Contracts\Token as TokenContract;
 
 class Token implements TokenContract {
 

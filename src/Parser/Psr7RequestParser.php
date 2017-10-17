@@ -7,7 +7,7 @@ use IgnisLabs\HotJot\Exceptions\BearerTokenNotFound;
 use Lcobucci\JWT\Parser;
 use IgnisLabs\HotJot\Token;
 use IgnisLabs\HotJot\Contracts\RequestParser;
-use IgnisLabs\HotJot\Contracts\Token\Token as TokenContract;
+use IgnisLabs\HotJot\Contracts\Token as TokenContract;
 use Psr\Http\Message\RequestInterface;
 
 class Psr7RequestParser implements RequestParser {

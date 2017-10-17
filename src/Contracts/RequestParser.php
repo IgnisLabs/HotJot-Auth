@@ -2,7 +2,7 @@
 
 namespace IgnisLabs\HotJot\Contracts;
 
-use IgnisLabs\HotJot\Contracts\Token\Token;
+use IgnisLabs\HotJot\Contracts\Token;
 use Symfony\Component\HttpFoundation\Request;
 
 interface RequestParser {

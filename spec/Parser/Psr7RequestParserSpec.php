@@ -2,7 +2,7 @@
 
 namespace spec\IgnisLabs\HotJot\Parser;
 
-use IgnisLabs\HotJot\Contracts\Token\Token;
+use IgnisLabs\HotJot\Contracts\Token;
 use IgnisLabs\HotJot\Exceptions\AuthorizationHeaderNotFound;
 use IgnisLabs\HotJot\Exceptions\BearerTokenNotFound;
 use IgnisLabs\HotJot\Parser\Psr7RequestParser;

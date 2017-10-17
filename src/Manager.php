@@ -7,7 +7,7 @@ use IgnisLabs\HotJot\Contracts\RequestParser;
 use IgnisLabs\HotJot\Contracts\Blacklist;
 use IgnisLabs\HotJot\Contracts\Manager as ManagerContract;
 use IgnisLabs\HotJot\Contracts\Token\Factory;
-use IgnisLabs\HotJot\Contracts\Token\Token;
+use IgnisLabs\HotJot\Contracts\Token;
 use IgnisLabs\HotJot\Exceptions\TokenCannotBeRefreshedException;
 
 class Manager implements ManagerContract {

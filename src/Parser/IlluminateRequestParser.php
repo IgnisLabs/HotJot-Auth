@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Lcobucci\JWT\Parser;
 use IgnisLabs\HotJot\Token;
 use IgnisLabs\HotJot\Contracts\RequestParser;
-use IgnisLabs\HotJot\Contracts\Token\Token as TokenContract;
+use IgnisLabs\HotJot\Contracts\Token as TokenContract;
 
 class IlluminateRequestParser implements RequestParser {
 

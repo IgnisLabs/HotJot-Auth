@@ -2,7 +2,7 @@
 
 namespace IgnisLabs\HotJot\Contracts;
 
-use IgnisLabs\HotJot\Contracts\Token\Token;
+use IgnisLabs\HotJot\Contracts\Token;
 
 interface Manager {
 

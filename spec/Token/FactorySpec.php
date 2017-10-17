@@ -2,7 +2,7 @@
 
 namespace spec\IgnisLabs\HotJot\Token;
 
-use IgnisLabs\HotJot\Contracts\Token\Token;
+use IgnisLabs\HotJot\Contracts\Token;
 use IgnisLabs\HotJot\Token\Factory;
 use Lcobucci\JWT\Signer;
 use PhpSpec\ObjectBehavior;

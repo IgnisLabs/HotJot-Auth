@@ -1,6 +1,6 @@
 <?php
 
-namespace IgnisLabs\HotJot\Contracts\Token;
+namespace IgnisLabs\HotJot\Contracts;
 
 interface Token {
 

@@ -6,7 +6,7 @@ use IgnisLabs\HotJot\Token;
 use Lcobucci\JWT\Builder;
 use Lcobucci\JWT\Signer;
 use IgnisLabs\HotJot\Contracts\Token\Factory as FactoryContract;
-use IgnisLabs\HotJot\Contracts\Token\Token as TokenContract;
+use IgnisLabs\HotJot\Contracts\Token as TokenContract;
 
 class Factory implements FactoryContract {
 

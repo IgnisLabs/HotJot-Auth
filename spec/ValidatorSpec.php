@@ -2,7 +2,7 @@
 
 namespace spec\IgnisLabs\HotJot;
 
-use IgnisLabs\HotJot\Contracts\Token\Token;
+use IgnisLabs\HotJot\Contracts\Token;
 use IgnisLabs\HotJot\Contracts\Token\Validator as TokenValidator;
 use IgnisLabs\HotJot\Validator;
 use PhpSpec\ObjectBehavior;

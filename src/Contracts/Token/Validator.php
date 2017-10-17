@@ -2,6 +2,8 @@
 
 namespace IgnisLabs\HotJot\Contracts\Token;
 
+use IgnisLabs\HotJot\Contracts\Token;
+
 interface Validator {
 
     /**

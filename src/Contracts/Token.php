@@ -15,9 +15,9 @@ interface Token {
     public function subject();
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function issuedBy() : string;
+    public function issuedBy() : ?string;
 
     /**
      * @return string|null

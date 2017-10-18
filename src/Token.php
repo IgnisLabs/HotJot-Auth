@@ -40,10 +40,14 @@ class Token implements TokenContract {
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function issuedBy() : string {
-        return $this->getClaim('iss');
+    public function issuedBy() : ?string {
+        try {
+            return $this->getClaim('iss');
+        } catch (\OutOfBoundsException $exception) {
+            return null;
+        }
     }
 
     /**

@@ -8,6 +8,8 @@ use IgnisLabs\HotJot\Contracts\Blacklist;
 use IgnisLabs\HotJot\Contracts\Manager as ManagerContract;
 use IgnisLabs\HotJot\Contracts\Token\Factory;
 use IgnisLabs\HotJot\Contracts\Token;
+use IgnisLabs\HotJot\Contracts\Token\Verifier;
+use IgnisLabs\HotJot\Exceptions\SignatureVerificationFailedException;
 use IgnisLabs\HotJot\Exceptions\TokenCannotBeRefreshedException;
 
 class Manager implements ManagerContract {
@@ -38,17 +40,24 @@ class Manager implements ManagerContract {
     private $ttr;
 
     /**
+     * @var Verifier
+     */
+    private $verifier;
+
+    /**
      * Manager constructor.
      * @param Factory       $factory
      * @param RequestParser $parser
      * @param Blacklist     $blacklist
+     * @param Verifier      $verifier
      * @param Validator     $validator
      * @param int           $ttr
      */
-    public function __construct(Factory $factory, RequestParser $parser, Blacklist $blacklist, Validator $validator, $ttr = 15) {
+    public function __construct(Factory $factory, RequestParser $parser, Blacklist $blacklist, Verifier $verifier, Validator $validator, $ttr = 15) {
         $this->factory = $factory;
         $this->parser = $parser;
         $this->blacklist = $blacklist;
+        $this->verifier = $verifier;
         $this->validator = $validator;
         $this->ttr = $ttr;
     }
@@ -111,5 +120,14 @@ class Manager implements ManagerContract {
      */
     public function validate(Token $token, ...$excludeValidators) {
         $this->validator->validate($token, ...$excludeValidators);
+    }
+
+    /**
+     * Verify token signature
+     * @param Token       $token
+     * @throws SignatureVerificationFailedException
+     */
+    public function verify(Token $token) {
+        $this->verifier->verify($token);
     }
 }

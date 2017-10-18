@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use IgnisLabs\HotJot\Contracts\Blacklist;
 use IgnisLabs\HotJot\Contracts\RequestParser;
 use IgnisLabs\HotJot\Contracts\Token\Factory;
+use IgnisLabs\HotJot\Contracts\Token\Verifier;
 use IgnisLabs\HotJot\Validator;
 use IgnisLabs\HotJot\Exceptions\TokenCannotBeRefreshedException;
 use IgnisLabs\HotJot\Manager;
@@ -15,9 +16,9 @@ use Prophecy\Argument;
 
 class ManagerSpec extends ObjectBehavior
 {
-    function let(Factory $factory, RequestParser $parser, Blacklist $blacklist, Validator $validator)
+    function let(Factory $factory, RequestParser $parser, Blacklist $blacklist, Verifier $verifier, Validator $validator)
     {
-        $this->beConstructedWith($factory, $parser, $blacklist, $validator);
+        $this->beConstructedWith($factory, $parser, $blacklist, $verifier, $validator);
     }
 
     function it_is_initializable()
@@ -74,5 +75,11 @@ class ManagerSpec extends ObjectBehavior
     {
         $validator->validate($token)->shouldBeCalled();
         $this->validate($token);
+    }
+
+    function it_should_verify_token(Verifier $verifier, Token $token)
+    {
+        $verifier->verify($token)->shouldBeCalled();
+        $this->verify($token);
     }
 }

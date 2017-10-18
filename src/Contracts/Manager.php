@@ -3,6 +3,7 @@
 namespace IgnisLabs\HotJot\Contracts;
 
 use IgnisLabs\HotJot\Contracts\Token;
+use IgnisLabs\HotJot\Exceptions\SignatureVerificationFailedException;
 
 interface Manager {
 
@@ -47,4 +48,11 @@ interface Manager {
      * @param array ...$excludeValidators
      */
     public function validate(Token $token, ...$excludeValidators);
+
+    /**
+     * Verify token signature
+     * @param Token       $token
+     * @throws SignatureVerificationFailedException
+     */
+    public function verify(Token $token);
 }

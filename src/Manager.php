@@ -11,6 +11,8 @@ use IgnisLabs\HotJot\Contracts\Token;
 use IgnisLabs\HotJot\Contracts\Token\Verifier;
 use IgnisLabs\HotJot\Exceptions\SignatureVerificationFailedException;
 use IgnisLabs\HotJot\Exceptions\TokenCannotBeRefreshedException;
+use IgnisLabs\HotJot\Exceptions\Validation\ValidationException;
+use IgnisLabs\HotJot\Token\Validators\ExpiresAtValidator;
 
 class Manager implements ManagerContract {
 
@@ -82,11 +84,15 @@ class Manager implements ManagerContract {
 
     /**
      * Get a new token based on a previous valid one
+     * This validates and verifies the token. You can exclude certain validators from running when refreshing.
      * @param Token $token
+     * @param array $excludeValidators
      * @return Token
      */
-    public function refresh(Token $token) : Token {
-        $this->validate($token, 'exp');
+    public function refresh(Token $token, ...$excludeValidators) : Token {
+        $this->validate($token, ExpiresAtValidator::class, ...$excludeValidators);
+        $this->verify($token);
+        $this->blacklist($token);
 
         if (Carbon::instance($token->issuedAt())->diffInDays(Carbon::now()) > $this->ttr) {
             throw new TokenCannotBeRefreshedException;
@@ -119,7 +125,12 @@ class Manager implements ManagerContract {
      * @param array $excludeValidators Exclude validators by class name
      */
     public function validate(Token $token, ...$excludeValidators) {
-        $this->validator->validate($token, ...$excludeValidators);
+        try {
+            $this->validator->validate($token, ...$excludeValidators);
+        } catch (ValidationException $exception) {
+            $this->blacklist($token);
+            throw $exception;
+        }
     }
 
     /**
@@ -128,6 +139,11 @@ class Manager implements ManagerContract {
      * @throws SignatureVerificationFailedException
      */
     public function verify(Token $token) {
-        $this->verifier->verify($token);
+        try {
+            $this->verifier->verify($token);
+        } catch (SignatureVerificationFailedException $exception) {
+            $this->blacklist($token);
+            throw $exception;
+        }
     }
 }

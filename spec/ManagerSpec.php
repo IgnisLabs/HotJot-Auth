@@ -7,6 +7,9 @@ use IgnisLabs\HotJot\Contracts\Blacklist;
 use IgnisLabs\HotJot\Contracts\RequestParser;
 use IgnisLabs\HotJot\Contracts\Token\Factory;
 use IgnisLabs\HotJot\Contracts\Token\Verifier;
+use IgnisLabs\HotJot\Exceptions\SignatureVerificationFailedException;
+use IgnisLabs\HotJot\Exceptions\Validation\ValidationException;
+use IgnisLabs\HotJot\Token\Validators\ExpiresAtValidator;
 use IgnisLabs\HotJot\Validator;
 use IgnisLabs\HotJot\Exceptions\TokenCannotBeRefreshedException;
 use IgnisLabs\HotJot\Manager;
@@ -41,11 +44,16 @@ class ManagerSpec extends ObjectBehavior
         $this->parse()->shouldBe($token);
     }
 
-    function it_should_refresh_a_valid_token(Factory $factory, Token $oldToken, Token $newToken)
+    function it_should_refresh_a_token_from_a_valid_old_one(Factory $factory, Blacklist $blacklist, Verifier $verifier, Validator $validator, Token $oldToken, Token $newToken)
     {
+        $oldToken->id()->willReturn('foo');
         $oldToken->issuedAt()->willReturn(Carbon::parse('yesterday'));
         $oldToken->getClaims()->willReturn(['foo' => 'bar']);
         $oldToken->getHeaders()->willReturn(['baz' => 'qux']);
+
+        $validator->validate($oldToken, ExpiresAtValidator::class)->shouldBeCalled();
+        $verifier->verify($oldToken)->shouldBeCalled();
+        $blacklist->add($oldToken)->shouldBeCalled();
 
         $factory->create(['foo' => 'bar'], ['baz' => 'qux'])->willReturn($newToken);
 
@@ -77,9 +85,23 @@ class ManagerSpec extends ObjectBehavior
         $this->validate($token);
     }
 
+    function it_should_blacklist_token_if_validation_fails(Blacklist $blacklist, Validator $validator, Token $token)
+    {
+        $validator->validate($token)->willThrow(ValidationException::class);
+        $blacklist->add($token)->shouldBeCalled();
+        $this->shouldThrow(ValidationException::class)->duringValidate($token);
+    }
+
     function it_should_verify_token(Verifier $verifier, Token $token)
     {
         $verifier->verify($token)->shouldBeCalled();
         $this->verify($token);
+    }
+
+    function it_should_blacklist_token_if_verification_fails(Blacklist $blacklist, Verifier $verifier, Token $token)
+    {
+        $verifier->verify($token)->willThrow(SignatureVerificationFailedException::class);
+        $blacklist->add($token)->shouldBeCalled();
+        $this->shouldThrow(SignatureVerificationFailedException::class)->duringVerify($token);
     }
 }

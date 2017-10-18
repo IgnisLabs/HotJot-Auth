@@ -33,7 +33,7 @@ class ManagerSpec extends ObjectBehavior
     {
         $claims = ['foo' => 'bar'];
         $headers = ['baz' => 'qux'];
-        $factory->create($claims, $headers)->willReturn($token)->shouldBeCalled();
+        $factory->create($claims, $headers, null)->willReturn($token)->shouldBeCalled();
 
         $this->create($claims, $headers)->shouldBe($token);
     }

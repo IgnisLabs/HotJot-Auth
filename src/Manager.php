@@ -53,7 +53,7 @@ class Manager implements ManagerContract {
      * @param Blacklist     $blacklist
      * @param Verifier      $verifier
      * @param Validator     $validator
-     * @param int           $ttr
+     * @param int           $ttr TTR in days
      */
     public function __construct(Factory $factory, RequestParser $parser, Blacklist $blacklist, Verifier $verifier, Validator $validator, $ttr = 15) {
         $this->factory = $factory;
@@ -66,12 +66,13 @@ class Manager implements ManagerContract {
 
     /**
      * Create a new token
-     * @param array $claims
-     * @param array $headers
+     * @param array    $claims
+     * @param array    $headers
+     * @param int|null $ttl TTL in minutes
      * @return Token
      */
-    public function create(array $claims, array $headers = []) : Token {
-        return $this->factory->create($claims, $headers);
+    public function create(array $claims, array $headers = [], int $ttl = null) : Token {
+        return $this->factory->create($claims, $headers, $ttl);
     }
 
     /**

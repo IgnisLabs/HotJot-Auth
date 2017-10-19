@@ -40,14 +40,13 @@ class Validator {
      * Validate token
      * Validators should throw exceptions with descriptive messages
      * @param Token $token
-     * @param array ...$excludeValidators
+     * @param string[] ...$excludeValidators Token validators class names
      */
     public function validate(Token $token, ...$excludeValidators) : void {
-        $validators = array_filter($this->validators, function(TokenValidator $validator) use ($excludeValidators) {
-            return !in_array(get_class($validator), $excludeValidators);
-        });
-        foreach ($validators as $validator) {
-            $validator->validate($token);
+        foreach ($this->validators as $validator) {
+            if (!in_array(get_class($validator), $excludeValidators)) {
+                $validator->validate($token);
+            }
         }
     }
 }

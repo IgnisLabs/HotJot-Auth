@@ -36,7 +36,7 @@ class VerifierSpec extends ObjectBehavior
         $token->__toString()->willReturn('a.token.here');
         $signer->verify('foo', 'a.token.here', 'public key')->willReturn(true);
 
-        $this->beConstructedWith($signer, 'secret key', 'public key');
+        $this->beConstructedWith($signer, 'public key');
 
         $this->verify($token);
     }

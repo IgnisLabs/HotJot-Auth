@@ -17,7 +17,7 @@ class Verifier implements VerifierContract {
     /**
      * @var string
      */
-    private $privateKey;
+    private $key;
 
     /**
      * @var string
@@ -27,13 +27,11 @@ class Verifier implements VerifierContract {
     /**
      * Verifier constructor.
      * @param Signer      $signer
-     * @param string      $privateKey
-     * @param string|null $publicKey
+     * @param string      $key
      */
-    public function __construct(Signer $signer, string $privateKey, string $publicKey = null) {
+    public function __construct(Signer $signer, string $key) {
         $this->signer = $signer;
-        $this->privateKey = $privateKey;
-        $this->publicKey = $publicKey;
+        $this->key = $key;
     }
 
     /**
@@ -41,7 +39,7 @@ class Verifier implements VerifierContract {
      * @throws SignatureVerificationFailedException
      */
     public function verify(Token $token) {
-        if (!$this->signer->verify($token->signature(), (string) $token, $this->publicKey ?? $this->privateKey)) {
+        if (!$this->signer->verify($token->signature(), (string) $token, $this->key)) {
             throw new SignatureVerificationFailedException;
         }
     }

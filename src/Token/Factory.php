@@ -58,6 +58,7 @@ class Factory implements FactoryContract {
         // Set mandatory claims
         $ttl = $ttl ?? $this->ttl;
         $claims['jti'] = $this->idGenerator->generate();
+        $claims['iat'] = (new \DateTime())->getTimestamp();
         $claims['exp'] = (new \DateTime("+$ttl minutes"))->getTimestamp();
 
         return $this->factory->create($claims, $headers);

@@ -35,6 +35,7 @@ class FactorySpec extends ObjectBehavior
             'default' => 'value',
             'foo' => 'bar',
             'jti' => 'token id',
+            'iat' => (new \DateTime())->getTimestamp(),
             'exp' => (new \DateTime('+10 minutes'))->getTimestamp(),
         ];
 

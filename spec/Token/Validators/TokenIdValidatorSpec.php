@@ -2,8 +2,8 @@
 
 namespace spec\IgnisLabs\HotJot\Auth\Token\Validators;
 
-use IgnisLabs\HotJot\Auth\Contracts\Token;
-use IgnisLabs\HotJot\Auth\Exceptions\Validation\ClaimRequiredException;
+use IgnisLabs\HotJot\Token;
+use IgnisLabs\HotJot\Exception\Validation\ClaimRequiredException;
 use IgnisLabs\HotJot\Auth\Token\Validators\TokenIdValidator;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;

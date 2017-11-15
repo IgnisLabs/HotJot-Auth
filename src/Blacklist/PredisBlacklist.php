@@ -3,7 +3,7 @@
 namespace IgnisLabs\HotJot\Auth\Blacklist;
 
 use IgnisLabs\HotJot\Auth\Contracts\Blacklist;
-use IgnisLabs\HotJot\Auth\Contracts\Token;
+use IgnisLabs\HotJot\Token;
 use Predis\ClientInterface;
 
 class PredisBlacklist implements Blacklist {
@@ -33,9 +33,9 @@ class PredisBlacklist implements Blacklist {
      * @param Token $token
      */
     public function add(Token $token) {
-        $key = $this->key($token->id());
-        $this->predis->set($key, (string) $token);
-        $this->predis->expireat($key, $token->expiresAt()->getTimestamp());
+        $key = $this->key($token->getClaim('jti'));
+        $this->predis->set($key, $token->getPayload());
+        $this->predis->expireat($key, $token->getClaim('exp')->getTimestamp());
     }
 
     /**

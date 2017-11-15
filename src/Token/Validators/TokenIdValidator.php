@@ -2,18 +2,23 @@
 
 namespace IgnisLabs\HotJot\Auth\Token\Validators;
 
-use IgnisLabs\HotJot\Auth\Contracts\Token;
-use IgnisLabs\HotJot\Auth\Contracts\Token\Validator;
+use IgnisLabs\HotJot\Token;
+use IgnisLabs\HotJot\Contracts\TokenValidator;
+use IgnisLabs\HotJot\Validators\ClaimRequiredTrait;
 
-class TokenIdValidator implements Validator {
+class TokenIdValidator implements TokenValidator {
 
-    use ClaimRequiredValidationTrait;
+    use ClaimRequiredTrait;
+
+    public function __construct() {
+        $this->isRequired = true;
+    }
 
     /**
      * Validate a token
      * @param Token $token
      */
     public function validate(Token $token) : void {
-        $this->validateRequiredClaim('jti', $token);
+        $this->validateRequiredClaim($token, 'jti');
     }
 }

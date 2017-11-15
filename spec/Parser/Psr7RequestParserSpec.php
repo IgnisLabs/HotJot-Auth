@@ -2,12 +2,11 @@
 
 namespace spec\IgnisLabs\HotJot\Auth\Parser;
 
-use IgnisLabs\HotJot\Auth\Contracts\Token;
+use IgnisLabs\HotJot\Parser;
+use IgnisLabs\HotJot\Token;
 use IgnisLabs\HotJot\Auth\Exceptions\AuthorizationHeaderNotFound;
 use IgnisLabs\HotJot\Auth\Exceptions\BearerTokenNotFound;
 use IgnisLabs\HotJot\Auth\Parser\Psr7RequestParser;
-use Lcobucci\JWT\Parser;
-use Lcobucci\JWT\Token as LcobucciToken;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 use Psr\Http\Message\RequestInterface;
@@ -24,7 +23,7 @@ class Psr7RequestParserSpec extends ObjectBehavior
         $this->shouldHaveType(Psr7RequestParser::class);
     }
 
-    function it_should_parse_token_from_request(RequestInterface $request, Parser $parser, LcobucciToken $token)
+    function it_should_parse_token_from_request(RequestInterface $request, Parser $parser, Token $token)
     {
         $request->getHeaderLine('authorization')->willReturn('Bearer a.valid.token');
         $parser->parse('a.valid.token')->shouldBeCalled()->willReturn($token);

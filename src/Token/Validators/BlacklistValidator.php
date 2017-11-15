@@ -2,12 +2,12 @@
 
 namespace IgnisLabs\HotJot\Auth\Token\Validators;
 
+use IgnisLabs\HotJot\Token;
+use IgnisLabs\HotJot\Contracts\TokenValidator;
 use IgnisLabs\HotJot\Auth\Contracts\Blacklist;
-use IgnisLabs\HotJot\Auth\Contracts\Token;
-use IgnisLabs\HotJot\Auth\Contracts\Token\Validator;
 use IgnisLabs\HotJot\Auth\Exceptions\Validation\TokenBlacklistedException;
 
-class BlacklistValidator implements Validator {
+class BlacklistValidator implements TokenValidator {
 
     /**
      * @var Blacklist
@@ -27,10 +27,8 @@ class BlacklistValidator implements Validator {
      * @param Token $token
      */
     public function validate(Token $token) : void {
-        try {
-            if ($this->blacklist->has($token->id())) {
-                throw new TokenBlacklistedException;
-            }
-        } catch (\OutOfBoundsException $exception) {}
+        if ($this->blacklist->has($token->getClaim('jti'))) {
+            throw new TokenBlacklistedException;
+        }
     }
 }

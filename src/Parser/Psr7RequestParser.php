@@ -2,12 +2,11 @@
 
 namespace IgnisLabs\HotJot\Auth\Parser;
 
+use IgnisLabs\HotJot\Parser;
+use IgnisLabs\HotJot\Token;
 use IgnisLabs\HotJot\Auth\Exceptions\AuthorizationHeaderNotFound;
 use IgnisLabs\HotJot\Auth\Exceptions\BearerTokenNotFound;
-use Lcobucci\JWT\Parser;
-use IgnisLabs\HotJot\Auth\Token;
 use IgnisLabs\HotJot\Auth\Contracts\RequestParser;
-use IgnisLabs\HotJot\Auth\Contracts\Token as TokenContract;
 use Psr\Http\Message\RequestInterface;
 
 class Psr7RequestParser implements RequestParser {
@@ -34,13 +33,12 @@ class Psr7RequestParser implements RequestParser {
 
     /**
      * Parse token from current request
-     * @return TokenContract
+     * @return Token
      */
-    public function parse() : TokenContract {
+    public function parse() : Token {
         $authHeader = $this->request->getHeaderLine('authorization');
 
         if (!$authHeader) {
-            // @todo create custom exception
             throw new AuthorizationHeaderNotFound;
         }
 
@@ -48,6 +46,6 @@ class Psr7RequestParser implements RequestParser {
             throw new BearerTokenNotFound;
         }
 
-        return new Token($this->parser->parse($matches[1]));
+        return $this->parser->parse($matches[1]);
     }
 }

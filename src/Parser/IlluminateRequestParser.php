@@ -2,12 +2,11 @@
 
 namespace IgnisLabs\HotJot\Auth\Parser;
 
+use IgnisLabs\HotJot\Parser;
+use IgnisLabs\HotJot\Token;
+use IgnisLabs\HotJot\Auth\Contracts\RequestParser;
 use IgnisLabs\HotJot\Auth\Exceptions\BearerTokenNotFound;
 use Illuminate\Http\Request;
-use Lcobucci\JWT\Parser;
-use IgnisLabs\HotJot\Auth\Token;
-use IgnisLabs\HotJot\Auth\Contracts\RequestParser;
-use IgnisLabs\HotJot\Auth\Contracts\Token as TokenContract;
 
 class IlluminateRequestParser implements RequestParser {
 
@@ -24,6 +23,7 @@ class IlluminateRequestParser implements RequestParser {
     /**
      * IlluminateRequestParser constructor.
      * @param Request $request
+     * @param Parser  $parser
      */
     public function __construct(Request $request, Parser $parser) {
         $this->request = $request;
@@ -32,15 +32,13 @@ class IlluminateRequestParser implements RequestParser {
 
     /**
      * Parse token from current request
-     * @return TokenContract
+     * @return Token
      */
-    public function parse() : TokenContract {
-        $jwt = $this->request->bearerToken();
-
-        if (!$jwt) {
+    public function parse() : Token {
+        if (!$jwt = $this->request->bearerToken()) {
             throw new BearerTokenNotFound;
         }
 
-        return new Token($this->parser->parse($jwt));
+        return $this->parser->parse($jwt);
     }
 }

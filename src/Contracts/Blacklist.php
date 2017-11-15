@@ -2,7 +2,7 @@
 
 namespace IgnisLabs\HotJot\Auth\Contracts;
 
-use IgnisLabs\HotJot\Auth\Contracts\Token;
+use IgnisLabs\HotJot\Token;
 
 interface Blacklist {
 

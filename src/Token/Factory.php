@@ -4,28 +4,26 @@ namespace IgnisLabs\HotJot\Auth\Token;
 
 use Carbon\Carbon;
 use IgnisLabs\HotJot\Auth\Contracts\Token\IdGenerator;
-use IgnisLabs\HotJot\Auth\Token;
-use Lcobucci\JWT\Builder;
-use Lcobucci\JWT\Signer;
+use IgnisLabs\HotJot\Token;
 use IgnisLabs\HotJot\Auth\Contracts\Token\Factory as FactoryContract;
-use IgnisLabs\HotJot\Auth\Contracts\Token as TokenContract;
+use IgnisLabs\HotJot\Factory as HotJotFactory;
 
 class Factory implements FactoryContract {
 
     /**
-     * @var Signer
+     * @var HotJotFactory
      */
-    private $signer;
-
-    /**
-     * @var string
-     */
-    private $key;
+    private $factory;
 
     /**
      * @var IdGenerator
      */
     private $idGenerator;
+
+    /**
+     * @var array
+     */
+    private $defaultClaims;
 
     /**
      * @var int
@@ -34,15 +32,15 @@ class Factory implements FactoryContract {
 
     /**
      * Factory constructor.
-     * @param IdGenerator $idGenerator
-     * @param Signer      $signer
-     * @param string      $privateKey
-     * @param int         $ttl
+     * @param HotJotFactory $factory
+     * @param IdGenerator   $idGenerator
+     * @param array         $defaultClaims
+     * @param int           $ttl
      */
-    public function __construct(IdGenerator $idGenerator, Signer $signer, string $privateKey, int $ttl = 10) {
+    public function __construct(HotJotFactory $factory, IdGenerator $idGenerator, array $defaultClaims = [], int $ttl = 10) {
+        $this->factory = $factory;
         $this->idGenerator = $idGenerator;
-        $this->signer = $signer;
-        $this->key = $privateKey;
+        $this->defaultClaims = $defaultClaims;
         $this->ttl = $ttl;
     }
 
@@ -50,26 +48,18 @@ class Factory implements FactoryContract {
      * Create token
      * @param array    $claims
      * @param array    $headers
-     * @param int|null $ttl
-     * @return TokenContract
+     * @param int|null $ttl TTL in minutes
+     * @return Token
      */
-    public function create(array $claims, array $headers = [], int $ttl = null) : TokenContract {
-        $builder = new Builder();
+    public function create(array $claims, array $headers = [], int $ttl = null) : Token {
+        // Set/Override default claims
+        $claims = array_merge($this->defaultClaims, $claims);
 
-        foreach ($claims as $name => $value) {
-            $builder->set($name, $value);
-        }
-
-        foreach ($headers as $name => $value) {
-            $builder->setHeader($name, $value);
-        }
-
+        // Set mandatory claims
         $ttl = $ttl ?? $this->ttl;
+        $claims['jti'] = $this->idGenerator->generate();
+        $claims['exp'] = (new \DateTime("+$ttl minutes"))->getTimestamp();
 
-        $builder
-            ->setId($this->idGenerator->generate())
-            ->setExpiration(Carbon::parse("$ttl minutes")->getTimestamp());
-
-        return new Token($builder->sign($this->signer, $this->key)->getToken());
+        return $this->factory->create($claims, $headers);
     }
 }

@@ -3,20 +3,22 @@
 namespace spec\IgnisLabs\HotJot\Auth\Token;
 
 use Carbon\Carbon;
-use IgnisLabs\HotJot\Auth\Contracts\Token;
+use IgnisLabs\HotJot\Factory as HotJotFactory;
+use IgnisLabs\HotJot\Token;
 use IgnisLabs\HotJot\Auth\Contracts\Token\IdGenerator;
 use IgnisLabs\HotJot\Auth\Token\Factory;
-use Lcobucci\JWT\Signer;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 
 class FactorySpec extends ObjectBehavior
 {
-    function let(IdGenerator $idGenerator, Signer $signer)
+    function let(HotJotFactory $factory, IdGenerator $idGenerator)
     {
         $idGenerator->generate()->willReturn('token id');
-        $key = 'private key';
-        $this->beConstructedWith($idGenerator, $signer, $key);
+        $defaultClaims = [
+            'default' => 'value',
+        ];
+        $this->beConstructedWith($factory, $idGenerator, $defaultClaims);
     }
 
     function it_is_initializable()
@@ -24,16 +26,20 @@ class FactorySpec extends ObjectBehavior
         $this->shouldHaveType(Factory::class);
     }
 
-    function it_should_create_a_new_token()
+    function it_should_create_a_new_token(HotJotFactory $factory, Token $token)
     {
         $claims = ['foo' => 'bar'];
         $headers = ['baz' => 'qux'];
-        /** @var Token $token */
-        $token = $this->create($claims, $headers);
-        $token->shouldBeAnInstanceOf(Token::class);
-        $token->id()->shouldBe('token id');
-        $token->getClaim('foo')->shouldBe('bar');
-        $token->getHeader('baz')->shouldBe('qux');
-        $token->expiresAt()->diffInMinutes(Carbon::now())->shouldBe(10);
+
+        $expectedClaims = [
+            'default' => 'value',
+            'foo' => 'bar',
+            'jti' => 'token id',
+            'exp' => (new \DateTime('+10 minutes'))->getTimestamp(),
+        ];
+
+        $factory->create($expectedClaims, $headers)->shouldBeCalled()->willReturn($token);
+
+        $this->create($claims, $headers)->shouldBe($token);
     }
 }

@@ -1,10 +1,10 @@
 <?php
 
-namespace IgnisLabs\HotJot;
+namespace IgnisLabs\HotJot\Auth;
 
 use Carbon\Carbon;
 use Lcobucci\JWT\Token as LcobucciToken;
-use IgnisLabs\HotJot\Contracts\Token as TokenContract;
+use IgnisLabs\HotJot\Auth\Contracts\Token as TokenContract;
 
 class Token implements TokenContract {
 

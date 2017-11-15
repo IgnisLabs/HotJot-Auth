@@ -1,9 +1,9 @@
 <?php
 
-namespace IgnisLabs\HotJot;
+namespace IgnisLabs\HotJot\Auth;
 
-use IgnisLabs\HotJot\Contracts\Token;
-use IgnisLabs\HotJot\Contracts\Token\Validator as TokenValidator;
+use IgnisLabs\HotJot\Auth\Contracts\Token;
+use IgnisLabs\HotJot\Auth\Contracts\Token\Validator as TokenValidator;
 
 class Validator {
 

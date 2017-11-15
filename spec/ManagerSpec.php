@@ -1,19 +1,19 @@
 <?php
 
-namespace spec\IgnisLabs\HotJot;
+namespace spec\IgnisLabs\HotJot\Auth;
 
 use Carbon\Carbon;
-use IgnisLabs\HotJot\Contracts\Blacklist;
-use IgnisLabs\HotJot\Contracts\RequestParser;
-use IgnisLabs\HotJot\Contracts\Token\Factory;
-use IgnisLabs\HotJot\Contracts\Token\Verifier;
-use IgnisLabs\HotJot\Exceptions\SignatureVerificationFailedException;
-use IgnisLabs\HotJot\Exceptions\Validation\ValidationException;
-use IgnisLabs\HotJot\Token\Validators\ExpiresAtValidator;
-use IgnisLabs\HotJot\Validator;
-use IgnisLabs\HotJot\Exceptions\TokenCannotBeRefreshedException;
-use IgnisLabs\HotJot\Manager;
-use IgnisLabs\HotJot\Token;
+use IgnisLabs\HotJot\Auth\Contracts\Blacklist;
+use IgnisLabs\HotJot\Auth\Contracts\RequestParser;
+use IgnisLabs\HotJot\Auth\Contracts\Token\Factory;
+use IgnisLabs\HotJot\Auth\Contracts\Token\Verifier;
+use IgnisLabs\HotJot\Auth\Exceptions\SignatureVerificationFailedException;
+use IgnisLabs\HotJot\Auth\Exceptions\Validation\ValidationException;
+use IgnisLabs\HotJot\Auth\Token\Validators\ExpiresAtValidator;
+use IgnisLabs\HotJot\Auth\Validator;
+use IgnisLabs\HotJot\Auth\Exceptions\TokenCannotBeRefreshedException;
+use IgnisLabs\HotJot\Auth\Manager;
+use IgnisLabs\HotJot\Auth\Token;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 

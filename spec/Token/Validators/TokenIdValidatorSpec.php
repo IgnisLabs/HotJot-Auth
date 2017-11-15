@@ -1,10 +1,10 @@
 <?php
 
-namespace spec\IgnisLabs\HotJot\Token\Validators;
+namespace spec\IgnisLabs\HotJot\Auth\Token\Validators;
 
-use IgnisLabs\HotJot\Contracts\Token;
-use IgnisLabs\HotJot\Exceptions\Validation\ClaimRequiredException;
-use IgnisLabs\HotJot\Token\Validators\TokenIdValidator;
+use IgnisLabs\HotJot\Auth\Contracts\Token;
+use IgnisLabs\HotJot\Auth\Exceptions\Validation\ClaimRequiredException;
+use IgnisLabs\HotJot\Auth\Token\Validators\TokenIdValidator;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 

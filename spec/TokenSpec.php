@@ -1,9 +1,9 @@
 <?php
 
-namespace spec\IgnisLabs\HotJot;
+namespace spec\IgnisLabs\HotJot\Auth;
 
 use Carbon\Carbon;
-use IgnisLabs\HotJot\Token;
+use IgnisLabs\HotJot\Auth\Token;
 use Lcobucci\JWT\Token as LcobucciToken;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;

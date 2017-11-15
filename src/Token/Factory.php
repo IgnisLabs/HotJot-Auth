@@ -1,14 +1,14 @@
 <?php
 
-namespace IgnisLabs\HotJot\Token;
+namespace IgnisLabs\HotJot\Auth\Token;
 
 use Carbon\Carbon;
-use IgnisLabs\HotJot\Contracts\Token\IdGenerator;
-use IgnisLabs\HotJot\Token;
+use IgnisLabs\HotJot\Auth\Contracts\Token\IdGenerator;
+use IgnisLabs\HotJot\Auth\Token;
 use Lcobucci\JWT\Builder;
 use Lcobucci\JWT\Signer;
-use IgnisLabs\HotJot\Contracts\Token\Factory as FactoryContract;
-use IgnisLabs\HotJot\Contracts\Token as TokenContract;
+use IgnisLabs\HotJot\Auth\Contracts\Token\Factory as FactoryContract;
+use IgnisLabs\HotJot\Auth\Contracts\Token as TokenContract;
 
 class Factory implements FactoryContract {
 

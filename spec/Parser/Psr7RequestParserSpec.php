@@ -1,11 +1,11 @@
 <?php
 
-namespace spec\IgnisLabs\HotJot\Parser;
+namespace spec\IgnisLabs\HotJot\Auth\Parser;
 
-use IgnisLabs\HotJot\Contracts\Token;
-use IgnisLabs\HotJot\Exceptions\AuthorizationHeaderNotFound;
-use IgnisLabs\HotJot\Exceptions\BearerTokenNotFound;
-use IgnisLabs\HotJot\Parser\Psr7RequestParser;
+use IgnisLabs\HotJot\Auth\Contracts\Token;
+use IgnisLabs\HotJot\Auth\Exceptions\AuthorizationHeaderNotFound;
+use IgnisLabs\HotJot\Auth\Exceptions\BearerTokenNotFound;
+use IgnisLabs\HotJot\Auth\Parser\Psr7RequestParser;
 use Lcobucci\JWT\Parser;
 use Lcobucci\JWT\Token as LcobucciToken;
 use PhpSpec\ObjectBehavior;

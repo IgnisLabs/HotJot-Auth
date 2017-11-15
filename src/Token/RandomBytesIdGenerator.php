@@ -1,8 +1,8 @@
 <?php
 
-namespace IgnisLabs\HotJot\Token;
+namespace IgnisLabs\HotJot\Auth\Token;
 
-use IgnisLabs\HotJot\Contracts\Token\IdGenerator;
+use IgnisLabs\HotJot\Auth\Contracts\Token\IdGenerator;
 
 class RandomBytesIdGenerator implements IdGenerator {
 

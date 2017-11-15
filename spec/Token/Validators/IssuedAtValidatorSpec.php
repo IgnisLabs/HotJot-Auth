@@ -1,11 +1,11 @@
 <?php
 
-namespace spec\IgnisLabs\HotJot\Token\Validators;
+namespace spec\IgnisLabs\HotJot\Auth\Token\Validators;
 
 use Carbon\Carbon;
-use IgnisLabs\HotJot\Contracts\Token;
-use IgnisLabs\HotJot\Exceptions\Validation\InvalidIssuedDateException;
-use IgnisLabs\HotJot\Token\Validators\IssuedAtValidator;
+use IgnisLabs\HotJot\Auth\Contracts\Token;
+use IgnisLabs\HotJot\Auth\Exceptions\Validation\InvalidIssuedDateException;
+use IgnisLabs\HotJot\Auth\Token\Validators\IssuedAtValidator;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 

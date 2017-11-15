@@ -1,8 +1,8 @@
 <?php
 
-namespace spec\IgnisLabs\HotJot\Token;
+namespace spec\IgnisLabs\HotJot\Auth\Token;
 
-use IgnisLabs\HotJot\Token\RandomBytesIdGenerator;
+use IgnisLabs\HotJot\Auth\Token\RandomBytesIdGenerator;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 

@@ -1,10 +1,10 @@
 <?php
 
-namespace spec\IgnisLabs\HotJot\Token;
+namespace spec\IgnisLabs\HotJot\Auth\Token;
 
-use IgnisLabs\HotJot\Contracts\Token;
-use IgnisLabs\HotJot\Exceptions\SignatureVerificationFailedException;
-use IgnisLabs\HotJot\Token\Verifier;
+use IgnisLabs\HotJot\Auth\Contracts\Token;
+use IgnisLabs\HotJot\Auth\Exceptions\SignatureVerificationFailedException;
+use IgnisLabs\HotJot\Auth\Token\Verifier;
 use Lcobucci\JWT\Signer;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;

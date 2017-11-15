@@ -1,16 +1,18 @@
 {
-    "name": "ignislabs/hotjot",
-    "description": "Framework-agnostic JSON Web Token authentication library",
+    "name": "ignislabs/hotjot-auth",
+    "description": "Laravel JSON Web Token authentication library",
     "type": "library",
     "require": {
-        "lcobucci/jwt": "^3.2",
-        "nesbot/carbon": "^1.22"
+        "nesbot/carbon": "^1.22",
+        "ignislabs/hotjot": "^0.1.0"
     },
     "require-dev": {
         "phpspec/phpspec": "^4.0",
         "psr/http-message": "^1.0",
         "illuminate/http": "^5.4",
-        "predis/predis": "^1.0"
+        "predis/predis": "^1.0",
+        "illuminate/contracts": "^5.5",
+        "illuminate/auth": "^5.5"
     },
     "license": "MIT",
     "authors": [
@@ -21,12 +23,12 @@
     ],
     "autoload": {
         "psr-4": {
-            "IgnisLabs\\HotJot\\": "src/"
+            "IgnisLabs\\HotJot\\Auth\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "spec\\IgnisLabs\\HotJot\\": "spec/"
+            "spec\\IgnisLabs\\HotJot\\Auth\\": "spec/"
         }
     }
 }

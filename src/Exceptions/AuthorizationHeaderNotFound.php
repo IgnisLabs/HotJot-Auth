@@ -1,6 +1,6 @@
 <?php
 
-namespace IgnisLabs\HotJot\Exceptions;
+namespace IgnisLabs\HotJot\Auth\Exceptions;
 
 use Throwable;
 

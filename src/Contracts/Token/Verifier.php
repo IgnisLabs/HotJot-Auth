@@ -1,9 +1,9 @@
 <?php
 
-namespace IgnisLabs\HotJot\Contracts\Token;
+namespace IgnisLabs\HotJot\Auth\Contracts\Token;
 
-use IgnisLabs\HotJot\Contracts\Token;
-use IgnisLabs\HotJot\Exceptions\SignatureVerificationFailedException;
+use IgnisLabs\HotJot\Auth\Contracts\Token;
+use IgnisLabs\HotJot\Auth\Exceptions\SignatureVerificationFailedException;
 
 interface Verifier {
 

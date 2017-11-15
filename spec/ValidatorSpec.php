@@ -1,10 +1,10 @@
 <?php
 
-namespace spec\IgnisLabs\HotJot;
+namespace spec\IgnisLabs\HotJot\Auth;
 
-use IgnisLabs\HotJot\Contracts\Token;
-use IgnisLabs\HotJot\Contracts\Token\Validator as TokenValidator;
-use IgnisLabs\HotJot\Validator;
+use IgnisLabs\HotJot\Auth\Contracts\Token;
+use IgnisLabs\HotJot\Auth\Contracts\Token\Validator as TokenValidator;
+use IgnisLabs\HotJot\Auth\Validator;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 

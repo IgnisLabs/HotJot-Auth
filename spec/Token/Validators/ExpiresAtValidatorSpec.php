@@ -1,12 +1,12 @@
 <?php
 
-namespace spec\IgnisLabs\HotJot\Token\Validators;
+namespace spec\IgnisLabs\HotJot\Auth\Token\Validators;
 
 use Carbon\Carbon;
-use IgnisLabs\HotJot\Contracts\Token;
-use IgnisLabs\HotJot\Exceptions\Validation\ClaimRequiredException;
-use IgnisLabs\HotJot\Exceptions\Validation\TokenExpiredException;
-use IgnisLabs\HotJot\Token\Validators\ExpiresAtValidator;
+use IgnisLabs\HotJot\Auth\Contracts\Token;
+use IgnisLabs\HotJot\Auth\Exceptions\Validation\ClaimRequiredException;
+use IgnisLabs\HotJot\Auth\Exceptions\Validation\TokenExpiredException;
+use IgnisLabs\HotJot\Auth\Token\Validators\ExpiresAtValidator;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 

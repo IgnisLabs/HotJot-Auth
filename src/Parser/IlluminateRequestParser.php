@@ -1,13 +1,13 @@
 <?php
 
-namespace IgnisLabs\HotJot\Parser;
+namespace IgnisLabs\HotJot\Auth\Parser;
 
-use IgnisLabs\HotJot\Exceptions\BearerTokenNotFound;
+use IgnisLabs\HotJot\Auth\Exceptions\BearerTokenNotFound;
 use Illuminate\Http\Request;
 use Lcobucci\JWT\Parser;
-use IgnisLabs\HotJot\Token;
-use IgnisLabs\HotJot\Contracts\RequestParser;
-use IgnisLabs\HotJot\Contracts\Token as TokenContract;
+use IgnisLabs\HotJot\Auth\Token;
+use IgnisLabs\HotJot\Auth\Contracts\RequestParser;
+use IgnisLabs\HotJot\Auth\Contracts\Token as TokenContract;
 
 class IlluminateRequestParser implements RequestParser {
 

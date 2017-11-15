@@ -1,10 +1,10 @@
 <?php
 
-namespace IgnisLabs\HotJot\Token;
+namespace IgnisLabs\HotJot\Auth\Token;
 
-use IgnisLabs\HotJot\Contracts\Token;
-use IgnisLabs\HotJot\Contracts\Token\Verifier as VerifierContract;
-use IgnisLabs\HotJot\Exceptions\SignatureVerificationFailedException;
+use IgnisLabs\HotJot\Auth\Contracts\Token;
+use IgnisLabs\HotJot\Auth\Contracts\Token\Verifier as VerifierContract;
+use IgnisLabs\HotJot\Auth\Exceptions\SignatureVerificationFailedException;
 use Lcobucci\JWT\Signer;
 
 class Verifier implements VerifierContract {

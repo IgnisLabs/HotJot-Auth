@@ -1,10 +1,10 @@
 <?php
 
-namespace spec\IgnisLabs\HotJot\Blacklist;
+namespace spec\IgnisLabs\HotJot\Auth\Blacklist;
 
 use Carbon\Carbon;
-use IgnisLabs\HotJot\Blacklist\PredisBlacklist;
-use IgnisLabs\HotJot\Contracts\Token;
+use IgnisLabs\HotJot\Auth\Blacklist\PredisBlacklist;
+use IgnisLabs\HotJot\Auth\Contracts\Token;
 use PhpSpec\ObjectBehavior;
 use Predis\ClientInterface;
 

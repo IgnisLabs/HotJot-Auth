@@ -1,8 +1,8 @@
 <?php
 
-namespace IgnisLabs\HotJot\Contracts;
+namespace IgnisLabs\HotJot\Auth\Contracts;
 
-use IgnisLabs\HotJot\Contracts\Token;
+use IgnisLabs\HotJot\Auth\Contracts\Token;
 
 interface Blacklist {
 

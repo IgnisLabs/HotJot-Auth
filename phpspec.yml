@@ -1,4 +1,4 @@
 suites:
-  hotjot:
-    namespace: IgnisLabs\HotJot
-    psr4_prefix: IgnisLabs\HotJot
+  hotjot-auth:
+    namespace: IgnisLabs\HotJot\Auth
+    psr4_prefix: IgnisLabs\HotJot\Auth

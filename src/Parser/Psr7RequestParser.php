@@ -1,13 +1,13 @@
 <?php
 
-namespace IgnisLabs\HotJot\Parser;
+namespace IgnisLabs\HotJot\Auth\Parser;
 
-use IgnisLabs\HotJot\Exceptions\AuthorizationHeaderNotFound;
-use IgnisLabs\HotJot\Exceptions\BearerTokenNotFound;
+use IgnisLabs\HotJot\Auth\Exceptions\AuthorizationHeaderNotFound;
+use IgnisLabs\HotJot\Auth\Exceptions\BearerTokenNotFound;
 use Lcobucci\JWT\Parser;
-use IgnisLabs\HotJot\Token;
-use IgnisLabs\HotJot\Contracts\RequestParser;
-use IgnisLabs\HotJot\Contracts\Token as TokenContract;
+use IgnisLabs\HotJot\Auth\Token;
+use IgnisLabs\HotJot\Auth\Contracts\RequestParser;
+use IgnisLabs\HotJot\Auth\Contracts\Token as TokenContract;
 use Psr\Http\Message\RequestInterface;
 
 class Psr7RequestParser implements RequestParser {

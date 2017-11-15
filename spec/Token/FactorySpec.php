@@ -1,11 +1,11 @@
 <?php
 
-namespace spec\IgnisLabs\HotJot\Token;
+namespace spec\IgnisLabs\HotJot\Auth\Token;
 
 use Carbon\Carbon;
-use IgnisLabs\HotJot\Contracts\Token;
-use IgnisLabs\HotJot\Contracts\Token\IdGenerator;
-use IgnisLabs\HotJot\Token\Factory;
+use IgnisLabs\HotJot\Auth\Contracts\Token;
+use IgnisLabs\HotJot\Auth\Contracts\Token\IdGenerator;
+use IgnisLabs\HotJot\Auth\Token\Factory;
 use Lcobucci\JWT\Signer;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;

@@ -1,9 +1,9 @@
 <?php
 
-namespace IgnisLabs\HotJot\Token\Validators;
+namespace IgnisLabs\HotJot\Auth\Token\Validators;
 
-use IgnisLabs\HotJot\Contracts\Token;
-use IgnisLabs\HotJot\Exceptions\Validation\ClaimRequiredException;
+use IgnisLabs\HotJot\Auth\Contracts\Token;
+use IgnisLabs\HotJot\Auth\Exceptions\Validation\ClaimRequiredException;
 
 trait ClaimRequiredValidationTrait {
 

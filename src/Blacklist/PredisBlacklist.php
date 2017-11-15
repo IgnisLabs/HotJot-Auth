@@ -1,9 +1,9 @@
 <?php
 
-namespace IgnisLabs\HotJot\Blacklist;
+namespace IgnisLabs\HotJot\Auth\Blacklist;
 
-use IgnisLabs\HotJot\Contracts\Blacklist;
-use IgnisLabs\HotJot\Contracts\Token;
+use IgnisLabs\HotJot\Auth\Contracts\Blacklist;
+use IgnisLabs\HotJot\Auth\Contracts\Token;
 use Predis\ClientInterface;
 
 class PredisBlacklist implements Blacklist {

@@ -1,11 +1,11 @@
 <?php
 
-namespace spec\IgnisLabs\HotJot\Token\Validators;
+namespace spec\IgnisLabs\HotJot\Auth\Token\Validators;
 
 use Carbon\Carbon;
-use IgnisLabs\HotJot\Contracts\Token;
-use IgnisLabs\HotJot\Exceptions\Validation\TokenUsedTooSoonException;
-use IgnisLabs\HotJot\Token\Validators\NotBeforeValidator;
+use IgnisLabs\HotJot\Auth\Contracts\Token;
+use IgnisLabs\HotJot\Auth\Exceptions\Validation\TokenUsedTooSoonException;
+use IgnisLabs\HotJot\Auth\Token\Validators\NotBeforeValidator;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 

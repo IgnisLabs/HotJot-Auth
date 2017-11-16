@@ -7,7 +7,7 @@ use IgnisLabs\HotJot\Contracts\TokenValidator;
 use IgnisLabs\HotJot\Auth\Contracts\Blacklist;
 use IgnisLabs\HotJot\Auth\Exceptions\Validation\TokenBlacklistedException;
 
-class BlacklistValidator implements TokenValidator {
+class IsBlacklistedValidator implements TokenValidator {
 
     /**
      * @var Blacklist

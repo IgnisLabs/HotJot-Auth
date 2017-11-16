@@ -2,6 +2,7 @@
 
 namespace IgnisLabs\HotJot\Auth\Exceptions\Validation;
 
+use IgnisLabs\HotJot\Exception\Validation\ValidationException;
 use Throwable;
 
 class TokenBlacklistedException extends ValidationException {

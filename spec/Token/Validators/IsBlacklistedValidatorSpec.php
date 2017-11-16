@@ -5,11 +5,11 @@ namespace spec\IgnisLabs\HotJot\Auth\Token\Validators;
 use IgnisLabs\HotJot\Token;
 use IgnisLabs\HotJot\Auth\Contracts\Blacklist;
 use IgnisLabs\HotJot\Auth\Exceptions\Validation\TokenBlacklistedException;
-use IgnisLabs\HotJot\Auth\Token\Validators\BlacklistValidator;
+use IgnisLabs\HotJot\Auth\Token\Validators\IsBlacklistedValidator;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 
-class BlacklistValidatorSpec extends ObjectBehavior
+class IsBlacklistedValidatorSpec extends ObjectBehavior
 {
     function let(Blacklist $blacklist)
     {
@@ -18,7 +18,7 @@ class BlacklistValidatorSpec extends ObjectBehavior
 
     function it_is_initializable()
     {
-        $this->shouldHaveType(BlacklistValidator::class);
+        $this->shouldHaveType(IsBlacklistedValidator::class);
     }
 
     function it_should_pass_validaton_if_token_is_not_blacklisted(Blacklist $blacklist, Token $token)

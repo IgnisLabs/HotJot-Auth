@@ -42,8 +42,7 @@ class HotJotGuard implements Guard {
      * @return Authenticatable|null
      */
     public function user() {
-        if (!$this->user) {
-            $token = $this->parser->parse();
+        if (!$this->user && $token = $this->parser->parse()) {
             $this->user = $this->getProvider()->retrieveById($token->getClaim($this->userIdentifierClaim));
         }
 

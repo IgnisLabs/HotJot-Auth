@@ -32,13 +32,13 @@ class IlluminateRequestParser implements RequestParser {
 
     /**
      * Parse token from current request
-     * @return Token
+     * @return Token|null
      */
-    public function parse() : Token {
-        if (!$jwt = $this->request->bearerToken()) {
-            throw new BearerTokenNotFound;
+    public function parse() : ?Token {
+        if ($jwt = $this->request->bearerToken()) {
+            return $this->parser->parse($jwt);
         }
 
-        return $this->parser->parse($jwt);
+        return null;
     }
 }

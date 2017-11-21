@@ -33,19 +33,19 @@ class Psr7RequestParser implements RequestParser {
 
     /**
      * Parse token from current request
-     * @return Token
+     * @return Token|null
      */
-    public function parse() : Token {
+    public function parse() : ?Token {
         $authHeader = $this->request->getHeaderLine('authorization');
 
         if (!$authHeader) {
             throw new AuthorizationHeaderNotFound;
         }
 
-        if (!preg_match('/^Bearer (.*)$/i', $authHeader, $matches)) {
-            throw new BearerTokenNotFound;
+        if (preg_match('/^Bearer (.*)$/i', $authHeader, $matches)) {
+            return $this->parser->parse($matches[1]);
         }
 
-        return $this->parser->parse($matches[1]);
+        return null;
     }
 }

@@ -28,10 +28,4 @@ class IlluminateRequestParserSpec extends ObjectBehavior
         $parser->parse('a.valid.token')->shouldBeCalled()->willReturn($token);
         $this->parse()->shouldBeAnInstanceOf(Token::class);
     }
-
-    function it_should_fail_if_authorization_header_has_no_bearer_token(Request $request)
-    {
-        $request->bearerToken()->willReturn();
-        $this->shouldThrow(BearerTokenNotFound::class)->during('parse');
-    }
 }

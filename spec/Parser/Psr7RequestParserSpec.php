@@ -35,10 +35,4 @@ class Psr7RequestParserSpec extends ObjectBehavior
         $request->getHeaderLine('authorization')->willReturn();
         $this->shouldThrow(AuthorizationHeaderNotFound::class)->during('parse');
     }
-
-    function it_should_fail_if_authorization_header_has_no_bearer_token(RequestInterface $request)
-    {
-        $request->getHeaderLine('authorization')->willReturn('not a valid bearer token');
-        $this->shouldThrow(BearerTokenNotFound::class)->during('parse');
-    }
 }

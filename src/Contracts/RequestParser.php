@@ -8,7 +8,7 @@ interface RequestParser {
 
     /**
      * Parse token from current request
-     * @return Token
+     * @return Token|null
      */
-    public function parse() : Token;
+    public function parse() : ?Token;
 }

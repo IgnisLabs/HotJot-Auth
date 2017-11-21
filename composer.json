@@ -30,5 +30,12 @@
         "psr-4": {
             "spec\\IgnisLabs\\HotJot\\Auth\\": "spec/"
         }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "IgnisLabs\\HotJot\\Auth\\Laravel\\HotJotAuthServiceProvider"
+            ]
+        }
     }
 }

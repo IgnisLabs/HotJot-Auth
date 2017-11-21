@@ -61,9 +61,11 @@ class HotJotAuthServiceProvider extends ServiceProvider {
 
     private function registerFactory() {
         $this->app->singleton(FactoryContract::class, function() {
+            $idGenerator = config('hotjot-auth.token.id_generator');
+
             return new Factory(
                 new \IgnisLabs\HotJot\Factory($this->app->make('hotjot.auth.signer'), new Encoder),
-                new (config('hotjot-auth.token.id_generator')),
+                new $idGenerator,
                 config('hotjot-auth.token.default_claims', []),
                 config('hotjot-auth.token.ttl', 10)
             );
@@ -137,6 +139,7 @@ class HotJotAuthServiceProvider extends ServiceProvider {
     private function registerGuard() {
         Auth::extend('hotjot', function ($app, $name, array $config) {
             return new HotJotGuard(
+                $app->make('hotjot.auth.factory'),
                 $app->make('hotjot.auth.parser'),
                 Auth::createUserProvider($config['provider']),
                 config('hotjot-auth.token.user_identifier_claim')

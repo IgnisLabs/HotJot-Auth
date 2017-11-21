@@ -3,7 +3,6 @@
 namespace IgnisLabs\HotJot\Auth\Contracts\Token;
 
 use IgnisLabs\HotJot\Token;
-use IgnisLabs\HotJot\Auth\Exceptions\SignatureVerificationFailedException;
 
 interface Verifier {
 

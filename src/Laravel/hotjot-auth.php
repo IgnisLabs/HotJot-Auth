@@ -15,7 +15,7 @@ return [
     'token' => [
         'ttl' => 10, // in minutes
         'ttr' => 15, // in days
-        'id_generator' => \IgnisLabs\HotJot\Auth\Contracts\Token\IdGenerator::class,
+        'id_generator' => \IgnisLabs\HotJot\Auth\Token\RandomBytesIdGenerator::class,
         'user_identifier_claim' => 'sub',
         'default_claims' => [
             'iss' => 'http://api.example.com',

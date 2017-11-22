@@ -2,7 +2,6 @@
 
 namespace spec\IgnisLabs\HotJot\Auth\Blacklist;
 
-use Carbon\Carbon;
 use IgnisLabs\HotJot\Auth\Blacklist\PredisBlacklist;
 use IgnisLabs\HotJot\Token;
 use PhpSpec\ObjectBehavior;
@@ -19,7 +18,7 @@ class PredisBlacklistSpec extends ObjectBehavior {
     }
 
     function it_can_blacklist_token(PredisClientDouble $predis, Token $token) {
-        $exp = Carbon::now();
+        $exp = new \DateTime();
         $token->getClaim('jti')->willReturn('token-id');
         $token->getClaim('exp')->willReturn($exp);
         $token->getPayload()->willReturn('a.valid.token');

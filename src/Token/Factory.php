@@ -2,7 +2,6 @@
 
 namespace IgnisLabs\HotJot\Auth\Token;
 
-use Carbon\Carbon;
 use IgnisLabs\HotJot\Auth\Contracts\Token\IdGenerator;
 use IgnisLabs\HotJot\Token;
 use IgnisLabs\HotJot\Auth\Contracts\Token\Factory as FactoryContract;

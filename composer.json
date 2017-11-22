@@ -3,8 +3,7 @@
     "description": "Laravel JSON Web Token authentication library",
     "type": "library",
     "require": {
-        "nesbot/carbon": "^1.22",
-        "ignislabs/hotjot": "^0.1.0"
+        "ignislabs/hotjot": "^1.0"
     },
     "require-dev": {
         "phpspec/phpspec": "^4.0",
